@@ -19,6 +19,10 @@ public class Loja
     private int Moedinha { get; set; }
     private AcaoComprar acaoComprar = null;
 
+    private AcaoVender acaoVender = null;
+
+    private AcaoAtualizar acaoAtualizar = null;
+
     public void Comprar(Maquinas maquinas)
     {
         ArgsComprar args = new ArgsComprar();
@@ -62,20 +66,14 @@ public class Loja
         public Loja Build()
             => this.loja;
 
-        public LojaBuilder SetNome(string nome)
+        public LojaBuilder SetFabrica(IFabricaAcoes acao)
         {
-            loja.Nome = nome;
+            loja.acaoComprar = acao.CriarComprar();
+            loja.acaoVender = acao.CriarVender();
+            loja.acaoAtualizar = acao.CriarAtualizar();
             return this;
         }
 
-        public LojaBuilder SetFabrica(IFabricaAcoes fabrica)
-        {
-            loja.processoDemissao = fabrica.CriaProcessoDemissao();
-            loja.processoPagamentoSalario = fabrica.CriaProcessoPagamentoSalario();
-            loja.processoContratacao = fabrica.CriaProcessoContratacao();
-            return this;
-        }
-        
         public LojaBuilder SetMoedinha(int moedinha)
         {
             loja.Moedinha = moedinha;
