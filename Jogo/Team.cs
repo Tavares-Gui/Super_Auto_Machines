@@ -3,5 +3,7 @@ using System.Collections.Generic;
 
 public abstract class Team
 {
-    Stack<Maquinas> TeamPlayer = new Stack<Maquinas>();
+    List<Maquinas> TeamPlayer = new List<Maquinas>();
+
+    
 }
